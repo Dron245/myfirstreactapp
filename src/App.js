@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { Suspense } from "react";
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
+import Block from "./Components/Block/Block";
+const Block2 = React.lazy(() => import("./Components/Block2"));
+// import Block from './Components/Block';
+// import Block2 from './Components/Block2';
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<>
+			<Routes>
+				<Route path="/" element={
+					<Suspense fallback={<div>Идёт загрузка корзины...</div>}>
+						<Block/>
+					</Suspense>
+					}/>
+				<Route path="/qwe" element={<Block2/>}/>
+			</Routes>
+		</>
+	);
 }
 
 export default App;
